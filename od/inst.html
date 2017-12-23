@@ -1,0 +1,26 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+<div id="example">
+  {{ a }}
+</div>
+
+<script type="text/javascript">
+    var data = { a: 1 }
+    var vm = new Vue({
+        el: '#example',
+        data: data,
+        created: function () {
+            // `this` 指向 vm 实例
+            console.log('a is: ' + this.a) //这个实例创建时执行的钩子
+        }
+    })
+
+    // 常用的实例属性或方法带$前缀，如data、el
+    vm.$data === data // => true
+    vm.$el === document.getElementById('example') // => true
+
+    // $watch 是一个实例方法
+    vm.$watch('a', function (newValue, oldValue) {
+      // 这个回调将在 `vm.a` 改变后调用
+    })
+</script>
