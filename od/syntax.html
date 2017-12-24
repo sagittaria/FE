@@ -1,0 +1,39 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+<div id="example">
+  <p>Using mustaches: {{ rawHtml }}</p>
+
+  <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+
+  <div v-bind:id="dynamicId"></div>
+  <!-- 双大括号只用于文本，html元素特性要用v-bind -->
+  <button v-bind:disabled="isButtonDisabled">Button</button>
+  <br>
+  <!-- 双大括号也支持js表达式 -->
+  <p>逆序rawHtml：{{ rawHtml.split('').reverse().join('') }}</p>
+
+  <p v-if="seen">现在你看到我了</p>
+  <a v-bind:href="url">...</a><br>
+  <a v-on:click="doSomething">...</a>
+
+  <a :href="url">缩写</a><br>
+  <a @click="doSomething">缩写</a>
+</div>
+
+<script type="text/javascript">
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            url:"http://www.baidu.com",
+            seen: true,
+            dynamicId:4,
+            isButtonDisabled:true,
+            rawHtml:'<span style="color:red">红色</span>'
+        },
+        methods:{
+            doSomething:function(){
+                console.log("did some thing");
+            }
+        }
+    })
+</script>
