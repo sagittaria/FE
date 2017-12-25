@@ -1,0 +1,40 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+<div id="example">
+  <p>Original message: "{{ message }}"</p>
+  <p>Computed reversed message: "{{ reversedMessage }}"</p>
+  <p>{{ fullName }}</p>
+</div>
+
+<script type="text/javascript">
+  var vm = new Vue({
+  el: '#example',
+  data: {
+    message: 'Hello',
+    firstName: 'Foo',
+    lastName: 'Bar'
+  },
+  computed: {
+    // 计算属性的 getter
+    reversedMessage: function () {
+      // `this` 指向 vm 实例
+      return this.message.split('').reverse().join('')
+    },
+    now: function () {
+        return Date.now()
+    },
+    fullName: {
+        // getter
+        get: function () {
+          return this.firstName + ' ' + this.lastName
+        },
+        // setter
+        set: function (newValue) {
+          var names = newValue.split(' ')
+          this.firstName = names[0]
+          this.lastName = names[names.length - 1]
+        }
+      }
+  }
+})
+</script>
