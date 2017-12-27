@@ -1,0 +1,34 @@
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+<div id="example">
+    <template v-if="displayAll"> <!-- 渲染结果不包含template -->
+      <h1>Title</h1>
+      <p>Paragraph 1</p>
+      <p>Paragraph 2</p>
+    </template>
+
+    <div v-if="type === 'A'">
+      A
+    </div>
+    <div v-else-if="type === 'B'">
+      B
+    </div>
+    <div v-else-if="type === 'C'">
+      C
+    </div>
+    <div v-else>
+      Not A/B/C
+    </div>
+    <h1 v-show="ok">Hello!</h1>
+</div>
+
+<script type="text/javascript">
+  var vm = new Vue({
+  el: '#example',
+  data: {
+    displayAll: true,
+    type: 'z',
+    ok:1
+  },
+})
+</script>
