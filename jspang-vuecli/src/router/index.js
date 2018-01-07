@@ -17,10 +17,17 @@ export default new Router({
       path:'/hi',
       component:Hi,
       children:[
-        {path:'/',component:Hi},
-        {path:'hi1',component:Hi1},
-        {path:'hi2',component:Hi2},
+        {path:'/',component:Hi, name: 'hi'},
+        {path:'hi1',component:Hi1, name: 'hi1'},
+        {path:'hi2',component:Hi2, name: 'hi2'}
       ]
+    },{
+      path:'/muilti-view-area',
+      components:{
+        default:HelloWorld,
+        left:Hi1,
+        right:Hi2
+      }
     }
   ]
 })
