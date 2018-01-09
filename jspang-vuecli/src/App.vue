@@ -1,36 +1,41 @@
 <template>
-
   <div id="app">
-    <img src="./assets/logo.png">
-    <p>{{ $route.name}}</p>
-    <p>导航 ：
-      <router-link to="/">首页</router-link> | 
-      <router-link to="/hi">Hi页面</router-link> |
-      <router-link to="/hi/hi1">-Hi页面1</router-link> |
-      <router-link to="/hi/hi2">-Hi页面2</router-link>
-      <router-link to="/muilti-view-area">多区域（path形式）</router-link>
-      <router-link :to="{name:'hi1',params:{name:'jspang',pwd:'12345'}}">Hi页面1（name传参）</router-link>
-    </p>   
-
-    <router-view ></router-view>
-    <router-view name="left" style="float:left;width:50%;background-color:#ccc;height:300px;"></router-view>
-    <router-view name="right" style="float:right;width:50%;background-color:#c0c;height:300px;"></router-view>
+    <!--左侧导航-->
+    <leftNav></leftNav>
+    
+    <!--操作区域-->
+    <div class="main">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
-
+ 
 <script>
+import leftNav from '@/components/common/leftNav'
 export default {
-  name: 'App'
+  name: 'app',
+  components:{
+    leftNav
+  }
 }
 </script>
-
+ 
 <style>
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Microsoft YaHei','Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  height:100%;
+}
+ 
+.main{
+  float:left;
+  width:95%; 
+  background-color: #EFF2F7;
+  height:100%;
+  overflow: auto;
+ 
 }
 </style>
