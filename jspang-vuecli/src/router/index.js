@@ -4,7 +4,11 @@ import HelloWorld from '@/components/HelloWorld'
 import Hi from '@/components/Hi'
 import Hi1 from '@/components/Hi1'
 import Hi2 from '@/components/Hi2'
+<<<<<<< HEAD
 import Pos from '@/components/page/Pos'
+=======
+import count from '@/components/count'
+>>>>>>> 9a538cb9903b4ebaa0df28c7d7dc860eaf6ac5ff
 
 Vue.use(Router)
 
