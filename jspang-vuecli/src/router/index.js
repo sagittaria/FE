@@ -4,6 +4,7 @@ import HelloWorld from '@/components/HelloWorld'
 import Hi from '@/components/Hi'
 import Hi1 from '@/components/Hi1'
 import Hi2 from '@/components/Hi2'
+import count from '@/components/count'
 
 Vue.use(Router)
 
@@ -28,6 +29,10 @@ export default new Router({
         left:Hi1,
         right:Hi2
       }
+    },{
+      path:'/vuex',
+      name:'vuex',
+      component:count
     }
   ]
 })
