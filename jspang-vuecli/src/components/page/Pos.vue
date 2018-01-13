@@ -11,7 +11,7 @@
                         <el-table-column prop="price" label="金额" width="70" align=center></el-table-column>
                         <el-table-column  label="操作" width="100" fixed="right" align=center>
                             <template scope="scope">
-                                <el-button type="text" size="small">删除</el-button>
+                                <el-button type="text" size="small" @click="delSingleGoods(scope.row)">删除</el-button>
                                 <el-button type="text" size="small" @click="addOrderList(scope.row)">增加</el-button>
                             </template>
                         </el-table-column>
@@ -21,8 +21,8 @@
                     </div>
                     <div class="div_btn">
                         <el-button type="warning" >挂单</el-button>
-                        <el-button type="danger" >删除</el-button>
-                        <el-button type="success" >结账</el-button>
+                        <el-button type="danger" @click='delAllGoods'>删除</el-button>
+                        <el-button type="success" @click='checkout'>结账</el-button>
                     </div>
                 </el-tab-pane>
                 <el-tab-pane label="挂单">
@@ -131,11 +131,44 @@ export default {
                 this.tableData.push(newGoods);
             }
             //进行数量和价格的汇总计算
-            this.tableData.forEach((element) => {
-                this.totalCount+=element.count;
-                this.totalMoney=this.totalMoney+(element.price*element.count);   
-            });
-      }
+            this.getAllMoney();
+        },
+        //删除单个商品
+        delSingleGoods(goods){
+            console.log(goods);
+            this.tableData=this.tableData.filter(o => o.goodsId !=goods.goodsId);
+            this.getAllMoney();
+        },
+        //删除所有商品
+        delAllGoods() {
+            this.tableData = [];
+            this.totalCount = 0;
+            this.totalMoney = 0;
+        },
+        //汇总数量和金额
+        getAllMoney(){
+            this.totalCount=0;
+            this.totalMoney=0;
+            if(this.tableData){
+                this.tableData.forEach((element) => {
+                        this.totalCount+=element.count;
+                        this.totalMoney=this.totalMoney+(element.price*element.count);   
+                    });
+            }   
+        },
+        checkout() {
+            if (this.totalCount!=0) {
+                this.tableData = [];
+                this.totalCount = 0;
+                this.totalMoney = 0;
+                this.$message({
+                    message: '结账成功，感谢你又为店里出了一份力!',
+                    type: 'success'
+                });
+            }else{
+                this.$message.error('不能空结。老板了解你急切的心情！');
+            }
+        }
   },
   created(){
       axios.get('http://jspang.com/DemoApi/oftenGoods.php')
